@@ -1,26 +1,33 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<div class="container-app">
+  <SearchIpAddress>
+    <InfoIpAddress/>
+  </SearchIpAddress>
+  <Map/>
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SearchIpAddress from "@/components/SearchIpAddress";
+import InfoIpAddress from "@/components/InfoIpAddress";
+import Map from "@/components/Map";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
+    SearchIpAddress,
+    InfoIpAddress,
+    Map
+  },
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss" scoped>
+.container-app{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
 }
 </style>
