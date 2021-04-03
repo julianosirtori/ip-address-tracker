@@ -5,12 +5,6 @@
    <info-ip-address-item :divider="true" label="TIMEZONE" :value="`UTC ${ipAddress.location.timezone}`" />
    <info-ip-address-item :divider="true" label="ISP" :value="ipAddress.isp" />
   </div>
-  <div class="infos-ip-address" v-if="!ipAddress">
-   <info-ip-address-item label="IP ADDRESS" value="192.212.174.101" />
-   <info-ip-address-item :divider="true" label="LOCATION" value="Brooklyn, NY 10001" />
-   <info-ip-address-item :divider="true" label="TIMEZONE" value="UTC -05:00" />
-   <info-ip-address-item :divider="true" label="ISP" value="SpaceX Starlink" />
-  </div>
 </template>
 
 <script>
@@ -45,14 +39,13 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   position: absolute;
-  bottom: -90px;
+  top: 160px;
   z-index: 999;
 
   @media (max-width: 1090px) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    bottom: -340px;
     max-width: 680px;
   }
 
@@ -62,7 +55,6 @@ export default {
 
   @media (max-width: 400px) {
     max-width: 300px;
-    bottom: -300px;
   }
 }
 </style>
