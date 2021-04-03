@@ -1,16 +1,14 @@
 <template>
-  <div class="infos-ip-address">
-   <info-ip-address-item label="IP ADDRESS" value="192.212.174.101" />
-   <div class="divider"/>
-   <info-ip-address-item label="LOCATION" value="Brooklyn, NY 10001" />
-   <div class="divider"/>
-   <info-ip-address-item label="TIMEZONE" value="UTC -05:00" />
-   <div class="divider"/>
-   <info-ip-address-item label="ISP" value="SpaceX Starlink" />
+  <div class="infos-ip-address" v-if="ipAddress">
+   <info-ip-address-item label="IP ADDRESS" :value="ipAddress.ip" />
+   <info-ip-address-item :divider="true" label="LOCATION" :value="`${ipAddress.location.region} ${ipAddress.location.city}, ${ipAddress.location.country}`" />
+   <info-ip-address-item :divider="true" label="TIMEZONE" :value="`UTC ${ipAddress.location.timezone}`" />
+   <info-ip-address-item :divider="true" label="ISP" :value="ipAddress.isp" />
   </div>
 </template>
 
 <script>
+import useIpAddress from "@/models/ipAddress"; 
 import InfoIpAddressItem from './InfoIpAddressItem';
 
 export default {
@@ -18,6 +16,12 @@ export default {
   components: {
     InfoIpAddressItem,
   },
+  setup(){
+    const {ipAddress, loading} = useIpAddress();
+  
+    return {ipAddress, loading};
+  }
+  
 }
 </script>
 
@@ -35,11 +39,5 @@ export default {
   position: absolute;
   bottom: -70px;
   z-index: 999;
-
-  .divider{
-    height: 72px;
-    width: 1px;
-    background: #A2A2A260;
-  }
 }
 </style>

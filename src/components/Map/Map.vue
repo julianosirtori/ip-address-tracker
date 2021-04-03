@@ -4,27 +4,49 @@
 
 <script>
 import "leaflet/dist/leaflet.css";
-
+import useIpAddress from "@/models/ipAddress"; 
+import {ref, onMounted, watch} from 'vue';
+import LocationIcon from "@/assets/icon-location.svg";
 import L from 'leaflet';
 
 export default {
   name: "Map",
-  data() {
-    return {
-      map: null
-    }
-  },
-  mounted () {
-    this.initMap();
-  },
-  methods: {
-    initMap() {
-      this.map = L.map('mapContainer').setView([51.505, -0.09], 13);
+  setup(){
+    let map = ref(null);
+    
+    let {ipAddress} = useIpAddress();
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(this.map);  
+    const initMap = () => {
+
+      map.value = L.map('mapContainer').setView([ 51.505, -0.09], 13);
+
+      L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        subdomains:['mt0','mt1','mt2','mt3']
+      }).addTo(map.value);
     }
+  
+    watch(ipAddress, () => {
+      const location = [ipAddress.value.location.lat, ipAddress.value.location.lng]
+
+      map.value.setView(location, 15);
+
+      var IconMarker = L.icon({
+        iconUrl: LocationIcon,
+        iconAnchor: [32, 64]
+      });
+
+      L.marker(location, {icon: IconMarker}).addTo(map.value);
+  
+      },
+    )
+
+
+    onMounted(() => {
+      initMap();
+    })
+
+    return {ipAddress}
+
   },
 }
 </script>

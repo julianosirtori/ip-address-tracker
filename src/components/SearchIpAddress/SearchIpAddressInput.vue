@@ -1,16 +1,34 @@
 <template>
-  <div class="search-input">
-    <input placeholder="Search for any IP address or domain"/>
-    <button>
+  <form class="search-input">
+    <input v-model="ip" placeholder="Search for any IP address or domain"/>
+    <button @click="handleSubmit" :disabled="loading">
       <img src="../../assets/icon-arrow.svg" />
     </button>
-  </div>
+  </form>
 </template>
 
 <script>
-  export default {
-    name: "SearchIpAddressInput"
+import useIpAddress from "@/models/ipAddress"; 
+import {ref, onMounted} from 'vue';
+
+export default {
+  name: "SearchIpAddressInput",
+  setup(){
+    const {findAddressByIp, loading} = useIpAddress();
+    const ip = ref('');
+
+    onMounted(() => {
+      findAddressByIp('');
+    });
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      findAddressByIp(ip.value);
+    }
+
+    return {ip, handleSubmit, loading};
   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -46,6 +64,10 @@
 
     &:hover{
       cursor: pointer;
+    }
+
+    &:disabled{
+      opacity: 0.5;
     }
   }
 }

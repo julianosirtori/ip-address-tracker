@@ -19,7 +19,8 @@ export default {
 
 <style lang="scss" scoped>
 .search-ip-address{
-  background: url('../../assets/pattern-bg.png');
+  background-image: url('../../assets/pattern-bg.png');
+  background-size: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
