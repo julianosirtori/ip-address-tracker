@@ -38,8 +38,6 @@ export default {
   display: flex;
   flex-direction: row;
 
-
-
   input{
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -48,7 +46,7 @@ export default {
     flex: 1;
 
     border: none;
-    font-size: 16px;
+    font-size: 1.6rem;
   }
 
   button{

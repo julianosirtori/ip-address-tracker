@@ -26,13 +26,15 @@ export default {
   align-items: center;
   height: 240px;
   width: 100%;
+  padding-left: 32px;
+  padding-right: 32px;
   position: relative;
 
   h1{
     color: #fff;
     margin-top: 32px;
-    margin-bottom: 32px;
-    font-size: 32px;
+    margin-bottom: 24px;
+    font-size: 2.6rem;
   }
 }
 </style>

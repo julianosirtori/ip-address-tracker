@@ -17,26 +17,39 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-right: 28px;
   max-width: 150px;
-
-  &.divider{
-    padding-left: 28px;
-    border-left: 1px solid hsl(0, 0%, 80%);
-  }
+  margin-top: 16px;
+  align-items: center;
 
   .label{
-    font-size: 12px;
+    font-size: 1.2rem;
     letter-spacing: 0.12em;
     font-weight: bold;
     color: hsl(0, 0%, 59%);
     margin-bottom: 12px;
+    text-align: center;
   }
 
   .value{
-    font-size: 24px;
+    text-align: center;
+    font-size: 2.4rem;
     font-weight: 500;
     color: hsl(0, 0%, 17%);
   }
+
+
+  @media (min-width: 1091px) {
+    margin-right: 28px;
+    align-items: flex-start;
+    &.divider{
+      padding-left: 28px;
+      border-left: 1px solid hsl(0, 0%, 80%);
+    };
+
+    .value, .label{
+      text-align: start;
+    }
+  }
+
 }
 </style>
